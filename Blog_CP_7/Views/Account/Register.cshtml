@@ -1,0 +1,55 @@
+﻿@model Blog_CP_7.Models.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Регистрация</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div>
+    <h4>Регистрация пользователя</h4>
+    <hr />
+    @Html.ValidationSummary(false)
+
+    <div>
+        Имя/логин
+        <div>
+            @Html.EditorFor(model => model.Name)
+        </div>
+    </div>
+
+    <div>
+        Электронный адрес
+        <div>
+            @Html.EditorFor(model => model.Email)
+        </div>
+    </div>
+
+
+
+    <div>
+        Пароль
+        <div>
+            @Html.EditorFor(model => model.Password)
+        </div>
+    </div>
+
+    <div>
+        Подтвердить пароль
+        <div>
+            @Html.EditorFor(model => model.PasswordConfirm)
+        </div>
+    </div>
+
+    <div>
+        <div style="padding-top:1em;">
+            <input type="submit" value="Зарегистрировать" class="btn btn-success"/>
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,30 @@
+﻿@model Blog_CP_7.Models.Post
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Author)
+        @Html.TextBoxFor(m => m.Author, new { @Value = ViewBag.Author, @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-success">Создать</button>
+}
+
+<div style="padding-top:1em;">
+    @Html.ActionLink("Вернуться", "AutPost", new { autor = ViewBag.Author })
+</div>

@@ -1,0 +1,139 @@
+﻿@model Blog_CP_7.Models.Post
+
+@{
+    ViewBag.Title = "EditPost";
+}
+
+<h2>Редактирование поста</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Author, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Author, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Author, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div style="padding-left:3em;padding-bottom:1em;">
+        @Html.ActionLink("Добавить изображение", "ImageAdd", new { id = Model.Id })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ImagePath, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Links, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Links, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Links, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Res, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Res, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Res, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Content, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.UrlSeo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UrlSeo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UrlSeo, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @Html.HiddenFor(model => model.NetLikeCount)
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.NetLikeCount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NetLikeCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NetLikeCount, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @Html.HiddenFor(model => model.PostedOn)
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.PostedOn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PostedOn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PostedOn, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @Html.HiddenFor(model => model.UsId)
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.UsId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UsId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UsId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div style="padding-left:3em;padding-bottom:1em;">
+        @Html.ActionLink("Добавить тег", "TagAdd", new { id = Model.Id })
+    </div>
+    @*<div class="form-group">
+        @TextBox("Теги:", ViewBag.TagP, new { @readonly = "readonly" })
+
+        <input readonly="readonly" disabled="disabled" class="form-control text-box single-line" type="text" value=@ViewBag.TagP>
+    </div>*@
+
+    <div class="form-group">
+        <label class="control-label col-md-2" >Теги:</label>
+        <div class="col-md-10">
+            <div style="padding-left:1em;padding-top:0.5em;">
+                @ViewBag.TagP
+            </div>
+                @*<input class="form-control text-box" readonly="readonly" type="text" value=@ViewBag.TagP>*@
+            </div>
+        </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Сохранить" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+<div>
+    <a href="@Url.Action("Generic", "Blog", new { @id = ViewBag.PI })">Вернуться</a>
+</div>

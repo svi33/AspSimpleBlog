@@ -1,0 +1,21 @@
+﻿@model Blog_CP_7.Models.Post
+@{
+    ViewBag.Title = "ImageAdd";
+}
+
+<h2>ImageAdd</h2>
+
+
+@Html.HiddenFor(m => m.Id)
+<p>
+    @Html.DisplayFor(m => m.Author, "Автор")
+</p>
+<p>
+    @Html.DisplayFor(m => m.Title, "Тема")
+</p>
+<p>
+    Добавить изображение
+    @Html.Partial("Upload")
+</p>
+<p>@Html.ActionLink("Edit", "EditPost", new { id = Model.Id })</p>
+<p>@Html.ActionLink("Back", "AutPost", new { autor = Model.Author })</p>

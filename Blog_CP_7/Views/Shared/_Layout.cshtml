@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/plugin.css")
+    @Styles.Render("~/Content/style.css")
+    @Scripts.Render("~/Scripts/Dev/plugin.js")
+    @Scripts.Render("~/Scripts/Dev/scripts.js")
+    @Styles.Render("~/Content/Site.css")
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top page-body mymenu">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+              <b><i> @Html.ActionLink("BlogS", "Index", "Blog", new { area = "" }, new { @class = "navbar-brand" })</i></b>
+                @*<img class="navbar-brand" src="~/foto/icons8.png"/>*@
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav mymenu">
+                    @*<li>@Html.ActionLink("Blogs", "Index", "Blog")</li>*@
+                    <li>@Html.ActionLink("Добавить", "Create", "Blog")</li>
+                    <li>@Html.ActionLink("О программе", "About", "Blog")</li>
+                    <li>@Html.ActionLink("Контакт", "Contact", "Blog")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        <!-- Preloader Start -->
+        <div id="rr" class="preloader">
+            <div class="rounder"></div>
+        </div>
+        <!-- Preloader End -->
+
+
+        @RenderBody()
+
+        <hr />
+        <footer>
+            <div class="col-md-12 page-body margin-top-30 footer">
+                <p>&copy; @DateTime.Now.Year – Blog in ASP.NET</p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script> 
+        var elem = document.getElementById('rr');
+        elem.style.display = 'none';
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,90 @@
+﻿@using Blog_CP_7.Models;
+@model IEnumerable<Post>
+
+@{
+    ViewBag.Title = "PostNeed";
+}
+<!-- About Me (Left Sidebar) Start -->
+<div class="col-md-3">
+    <div class="about-fixed">
+
+        <div class="my-detail">
+            @using (Html.BeginForm("Index", "Blog", FormMethod.Post))
+            {
+                <p style="padding-top:1em">
+                    <h5> Поиск по блогам:</h5>
+                </p>
+                <p>
+                    @Html.TextBox("param", "", new { @class = "text-input" })
+                    <input class="btn-sm btn-info" type="submit" value="Начать" />
+                </p>
+            }
+
+            <div class="white-spacing">
+                <h3>@Html.ActionLink("Популярные", "SortLike", "Blog")</h3>
+                <h3>@Html.ActionLink("Коментируемые", "SortComent")</h3>
+                <h3>@Html.ActionLink("Свежие", "Index")</h3>
+            </div>
+
+            <ul class="social-icon">
+                <li><a href="https://www.facebook.com" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com" target="_blank" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com" target="_blank" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://github.com" target="_blank" class="github"><i class="fa fa-github"></i></a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-9">
+    <div class="col-md-12 page-body">
+        <div class="row">
+
+            <div class="sub-title">
+                <h2>Блог для начинающих програмистов</h2>
+                <a href="contact.html"><i class="icon-envelope"></i></a>
+            </div>
+
+
+            <div class="col-md-12 content-page">
+
+                @foreach (var blog in Model)
+                {
+
+                    <div class="post-title"> <h1> @blog.Title </h1> </div>
+                    <div class="post-info">
+                        <span>
+                            <i>
+                                @blog.PostedOn.Value.ToShortDateString() oт :
+                                @Html.ActionLink(@blog.Author, "AutPost", new { autor = blog.Author })
+                                Коментарии: @if (ViewBag.Com_t != null)
+                                {<b>
+                                        @((ViewBag.Com_t as ICollection<Comment>).Where(u => u.PostId == blog.Id).ToList().Count)
+                                    </b>}
+                                else
+                                { <b> 0</b>}
+                                Понравилось: @blog.NetLikeCount
+                            </i>
+                        </span>
+                    </div>
+                    if (blog.ImagePath != "" && blog.ImagePath != null)
+                    {
+                        <div class="my-pic">
+                            <img class="card-img Himage" src="@Url.Content(blog.ImagePath)" alt="Card image">
+                        </div>
+                    }
+                    <p> @blog.Content.Substring(0, 50)... </p>
+                    <a class="button button-style button-anim fa fa-long-arrow-right" href="@Url.Action("Generic", "Blog", new { @id = blog.Id })"> Далее </a>
+
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/scripts/jquery-1.10.2.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
